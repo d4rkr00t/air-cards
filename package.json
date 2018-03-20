@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "now": {
-    "alias": "air-cards"
-  },
   "scripts": {
     "start": "node server/index.js",
     "dev": "nodemon server/index.js",

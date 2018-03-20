@@ -5,7 +5,8 @@ let { createBase, fetchAllRecords } = require("./airtable");
 let { template } = require("./template");
 let key = process.env.API_KEY || require("../key");
 let app = new Koa();
-let base = createBase(key);
+let baseId = process.env.BASE || "app4lM53g6kt4kZci";
+let base = createBase(key, baseId);
 
 // Static
 

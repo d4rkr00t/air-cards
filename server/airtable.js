@@ -1,8 +1,8 @@
 const Airtable = require("airtable");
 const cache = new Map();
 
-function createBase(apiKey) {
-  return new Airtable({ apiKey }).base("app4lM53g6kt4kZci");
+function createBase(apiKey, baseId) {
+  return new Airtable({ apiKey }).base(baseId);
 }
 
 function fetchAllRecords(airtable, base) {
