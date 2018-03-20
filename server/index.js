@@ -1,5 +1,6 @@
 let Koa = require("koa");
 let { createBase, fetchAllRecords } = require("./airtable");
+let { template } = require("./template");
 let key = require("../key");
 let app = new Koa();
 let base = createBase(key);
@@ -22,15 +23,25 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}`);
 });
 
+const withCategory = (list, Category) =>
+  list.map(item => Object.assign({ Category }, item));
+
 app.use(async ctx => {
-  ctx.response.type = "json";
+  ctx.response.type = "html";
 
-  const words = await fetchAllRecords(base, "Words");
-  const idioms = await fetchAllRecords(base, "Idioms");
-  const phrases = await fetchAllRecords(base, "Phrases");
-  const phrasalVerbs = await fetchAllRecords(base, "Phrasal Verbs");
+  let words = await fetchAllRecords(base, "Words");
+  let idioms = await fetchAllRecords(base, "Idioms");
+  let phrases = await fetchAllRecords(base, "Phrases");
+  let phrasalVerbs = await fetchAllRecords(base, "Phrasal Verbs");
 
-  ctx.body = JSON.stringify({ words, idioms, phrases, phrasalVerbs });
+  let allRecords = withCategory(words, "words")
+    .concat(withCategory(idioms, "idioms"))
+    .concat(withCategory(phrases, "phrases"))
+    .concat(withCategory(phrasalVerbs, "phrasal verbs"));
+
+  let record = allRecords[Math.floor(Math.random() * allRecords.length)];
+
+  ctx.body = template(record);
 });
 
 app.listen(3000);
