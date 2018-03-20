@@ -12,7 +12,7 @@ function fetchAllRecords(airtable, base) {
 
     if (
       cachedRecords &&
-      Date.now() - cachedRecords.timestamp < 60 * 60 * 24 * 1000
+      Date.now() - cachedRecords.timestamp < 60 * 60 * 1 * 1000
     ) {
       return resolve(cachedRecords.records);
     }
