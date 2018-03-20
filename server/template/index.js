@@ -11,8 +11,9 @@ function renderCategoryAndType(category, type) {
 
 function renderName(name, dictionary) {
   return name
-    ? `<h1 class="card__name"><a href="${dictionary ||
-        "#"}" target="_blank">${name}</a></h1>`
+    ? `<h1 class="card__name"><a href="${dictionary || "#"}" ${
+        dictionary ? 'target="_blank"' : ""
+      }>${name}</a></h1>`
     : "";
 }
 
