@@ -47,13 +47,14 @@ function template(record) {
   <style>${styles}</style>
 </head>
 <body>
-  <div class="card">
-    ${renderCategoryAndType(record.Category, record.Type)}
-    ${renderName(record.Name, record.Dictionary)}
-    ${renderDefinition(record.Definition)}
-    ${renderExamples(record.Examples)}
+  <div class="card-wrapper">
+    <div class="card">
+      ${renderCategoryAndType(record.Category, record.Type)}
+      ${renderName(record.Name, record.Dictionary)}
+      ${renderDefinition(record.Definition)}
+      ${renderExamples(record.Examples)}
+    </div>
   </div>
-
 </body>
 </html>`;
 }
