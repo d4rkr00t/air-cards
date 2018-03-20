@@ -1,7 +1,7 @@
 let Koa = require("koa");
 let { createBase, fetchAllRecords } = require("./airtable");
 let { template } = require("./template");
-let key = require("../key");
+let key = process.env.API_KEY || require("../key");
 let app = new Koa();
 let base = createBase(key);
 
