@@ -1,9 +1,15 @@
+let path = require("path");
 let Koa = require("koa");
+let serve = require("koa-static");
 let { createBase, fetchAllRecords } = require("./airtable");
 let { template } = require("./template");
 let key = process.env.API_KEY || require("../key");
 let app = new Koa();
 let base = createBase(key);
+
+// Static
+
+app.use(serve(path.join(__dirname, "public")));
 
 // x-response-time
 

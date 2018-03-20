@@ -6,7 +6,7 @@ function createBase(apiKey) {
 }
 
 function fetchAllRecords(airtable, base) {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     let allRecords = [];
     let cachedRecords = cache.get(base);
 

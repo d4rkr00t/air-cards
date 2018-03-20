@@ -1,0 +1,14 @@
+{
+  "short_name": "air-cards",
+  "name": "Air Cards",
+  "background_color": "#fff",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./",
+  "display": "standalone"
+}
