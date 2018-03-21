@@ -133,10 +133,6 @@ body {
   color: #474747;
 }
 
-.card__examples {
-  margin-top: 1.8em;
-}
-
 .card__examples li::before {
   padding-top: 0.3em;
   padding-right: 1em;
@@ -144,5 +140,5 @@ body {
 }
 
 .card__examples li + li {
-  margin-top: 1.5em;
+  margin-top: 1em;
 }
