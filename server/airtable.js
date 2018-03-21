@@ -33,7 +33,9 @@ function fetchAllRecords(airtable, base) {
         },
         err => {
           if (err) return reject(err);
-          let records = allRecords.map(rec => rec.fields);
+          let records = allRecords.map(rec =>
+            Object.assign({}, rec.fields, { id: rec.id })
+          );
           cache.set(base, {
             timestamp: Date.now(),
             records

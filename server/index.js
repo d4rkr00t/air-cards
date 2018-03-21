@@ -30,8 +30,12 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}`);
 });
 
-const withCategory = (list, Category) =>
+let withCategory = (list, Category) =>
   list.map(item => Object.assign({ Category }, item));
+
+let pickRandom = list => list[Math.floor(Math.random() * list.length)];
+
+let prevPicks = [];
 
 app.use(async ctx => {
   ctx.response.type = "html";
@@ -46,7 +50,15 @@ app.use(async ctx => {
     .concat(withCategory(phrases, "phrases"))
     .concat(withCategory(phrasalVerbs, "phrasal verbs"));
 
-  let record = allRecords[Math.floor(Math.random() * allRecords.length)];
+  let record = pickRandom(allRecords);
+
+  while (prevPicks.indexOf(record.id) !== -1) {
+    record = pickRandom(allRecords);
+  }
+
+  prevPicks = [record.id].concat(
+    prevPicks.slice(0, Math.floor(allRecords.length / 3))
+  );
 
   ctx.body = template(record);
 });
