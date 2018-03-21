@@ -17,6 +17,10 @@ function fetchAllRecords(airtable, base) {
       return resolve(cachedRecords.records);
     }
 
+    if (cachedRecords) {
+      resolve(cachedRecords.records);
+    }
+
     airtable(base)
       .select({
         maxRecords: 100,
@@ -34,7 +38,10 @@ function fetchAllRecords(airtable, base) {
             timestamp: Date.now(),
             records
           });
-          resolve(records);
+
+          if (!cachedRecords) {
+            resolve(records);
+          }
         }
       );
   });
